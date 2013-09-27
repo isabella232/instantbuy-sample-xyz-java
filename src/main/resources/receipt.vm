@@ -1,0 +1,60 @@
+    <div id="receipt-content" class="ui-content ui-body-c">
+      <div id="receipt-content">
+        <p class="content-indent">Order summary</p>
+        <table class="fill-100 small-font">
+          <tr>
+            <td class="text-right">Item Subtotal</td>
+            <td class="text-right content-indent"><div
+                id="receipt-subtotal">$$receiptPrice</div></td>
+          </tr>
+          <tr>
+            <td class="text-right">Estimated Shipping</td>
+            <td class="text-right content-indent">$9.99</td>
+          </tr>
+          <tr>
+            <td class="text-right">Tax (CA)</td>
+            <td class="text-right content-indent">$8.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="text-right"><b>Total</b></td>
+            <td class="text-right content-indent"><b>$$totalPrice</b></td>
+          </tr>
+        </table>
+        <hr>
+        <p class="content-indent">Confirmation Details</p>
+        <table class="fill-100 small-font">
+          <tr>
+            <td class="content-indent">Secured by <img src="/img/GreyLogo124_26.png"></img>
+            </td>
+          </tr>
+          <tr>
+            <td class="content-indent">Your order confirmation number is AH1234567890.
+              Your purchase will be shipped within two business days, your
+              tracking number will be sent to you via email at $receiptEmail</td>
+          </tr>
+          <tr></tr>
+        </table>
+      </div>
+      <div class="button-style-large">
+        <div class="ui-btn ui-shadow ui-btn-up-a">
+          <span class="ui-btn-inner" onclick="window.location = 'select';">
+            <span class="ui-btn-text">Continue Shopping</span>
+          </span>
+        </div>
+      </div>
+      <pre id="full-response-jwt" class="content-indent jwtContent">$fullWalletJwt
+PAN = $pan
+CVN = $cvn
+      </pre>
+    </div>
+    <script type="text/javascript">
+      // NotifyTransactionStatus is used to notify Wallet of the final transaction
+      // status. You need to call this function after you've processed the one time card.
+      jQuery(function(){
+        google.wallet.online.notifyTransactionStatus({jwt: $notificationJwt});
+      });
+    </script>
