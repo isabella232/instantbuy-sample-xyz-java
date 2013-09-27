@@ -1,0 +1,60 @@
+
+XYZ Sample App
+-------------------------
+This application is a sample integration of Google Wallet for online commerce.
+It demonstrates how to integrate the API into your web application.
+This sample is optimized for mobile devices but the integration model is the same for both mobile and desktop.
+
+Prerequisites
+-------------------------
+This project uses Maven. You need to have at least maven 3.0.x installed on your machine.
+You can run mvn verify in the project source to ensure its all setup. On first load, this
+command downloads the necessary artifacts/jars.
+
+Configuration
+--------
+Under src/main/webapp/WEB-INF/appengine-web.xml specify your sandbox and production ID and auth key.
+
+Building:
+--------
+Once you have the source, here are the set of instruction for building the project
+
+$ mvn package
+
+This compiles and packages up a war (Web Archive) that can be deployed to appengine.
+
+Running a Local Dev Server:
+-------------------------
+To run the development server locally, run the following command
+
+$ mvn appengine:devserver
+
+You can now visit http://localhost:8080/ in your browser to see the app in action
+
+Updating/Uploading to App Engine:
+--------------------------------
+Before you perform this step, ensure that you have setup the correct app-version in appengine-web.xml
+Replace the APP_IDENTIFIER with the one registered with appengine.google.com
+
+ <application>APP_IDENTIFIER</application>
+
+To upload, run the following command
+
+$ mvn appengine:update
+
+This creates or updates an app version
+
+For more information on using Appengine with Maven and for other supported commands,
+please visit https://developers.google.com/appengine/docs/java/tools/maven 
+
+The important parts of this sample app.
+wallet.js
+  - This contains the authorization code which checks if a user has already authorized for this
+  merchant to get their masked wallet.
+order.vm & OrderPage.java
+  - This page contains the button and the success and failure callback for that button.
+confirm.vm & Confirm.java
+  - This page contains a change wallet button and the corrosponding callbacks.
+  - It also contains the full wallet request and the callbacks for that.
+receipt.vm & ReceiptPage.java
+  - This page contains the call to notifyTransactionStatus
